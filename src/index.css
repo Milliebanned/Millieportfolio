@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo Black", "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-paper: #f3ece0;
+  --color-paper-soft: #ece2d0;
+  --color-cream: #fbf6ec;
+
+  --color-ink: #18131f;
+  --color-ink-soft: #56506a;
+  --color-line: #18131f1f;
+
+  --color-lavender: #8d72d6;
+  --color-lavender-deep: #6650b8;
+  --color-terracotta: #c1432a;
+  --color-teal: #2f8f86;
+  --color-gold: #e8ae3f;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border-radius: 999px;
+  border: 2px solid var(--color-paper);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Neo-brutalist bordered card with a hard offset shadow that "presses in" on hover */
+.slab {
+  background: var(--color-cream);
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 7px 7px 0 0 var(--shadow-color, var(--color-ink));
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.slab:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 3px 3px 0 0 var(--shadow-color, var(--color-ink));
+}
+
+.btn-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+.btn-press:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+}
+.btn-press:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 var(--color-ink);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.marquee-paused:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
